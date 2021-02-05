@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2015 Adolfo Jayme Barrientos <fitojb@ubuntu.com>
 	
@@ -20,12 +20,12 @@
 
 <!-- This file is optional.-->
 
-<GUP_NativeLangue name="Català">
+<GUP_NativeLangue name="CatalÃ ">
 	<PopupMessages>
-		<MSGID_NOUPDATE content="No hi ha cap actualització disponible." />
-		<MSGID_UPDATEAVAILABLE content="Hi ha una actualització disponible. Voleu baixar-la?" />
-		<MSGID_DOWNLOADSTOPPED content="S'ha interromput la baixada. No es podrà fer l'actualització." />
-		<MSGID_CLOSEAPP content=" és obert.\rEl programa es tancarà per fer la instalació.\rVoleu continuar?" />
-		<MSGID_ABORTORNOT content="Segur que voleu interrompre la baixada de l'actualització?" />
+		<MSGID_NOUPDATE content="No hi ha cap actualitzaciÃ³ disponible." />
+		<MSGID_UPDATEAVAILABLE content="Hi ha una actualitzaciÃ³ disponible. Voleu baixar-la?" />
+		<MSGID_DOWNLOADSTOPPED content="S'ha interromput la baixada. No es podrÃ  fer l'actualitzaciÃ³." />
+		<MSGID_CLOSEAPP content=" Ã©s obert.&#xD;El programa es tancarÃ  per fer la instalaciÃ³.&#xD;Voleu continuar?" />
+		<MSGID_ABORTORNOT content="Segur que voleu interrompre la baixada de l'actualitzaciÃ³?" />
 	</PopupMessages>
 </GUP_NativeLangue>

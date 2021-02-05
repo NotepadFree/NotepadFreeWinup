@@ -22,10 +22,10 @@ Use this file to set your proxy settings if need.
 -->
 <GUP_NativeLangue name = "Español">
 	<PopupMessages>
-		<MSGID_NOUPDATE  content="No hay ninguna actualización disponible." />
-		<MSGID_UPDATEAVAILABLE  content="Hay una actualización disponible. ¿Quiere descargarla?" />
-		<MSGID_DOWNLOADSTOPPED  content="Se interrumpió la descarga. No se podrá realizar la actualización." />
-		<MSGID_CLOSEAPP  content=" está abierto.\rSe cerrará el programa para realizar la instalación.\r¿Quiere continuar?" />
-		<MSGID_ABORTORNOT  content="¿Confirma que quiere interrumpir la descarga de la actualización?" />
+		<MSGID_NOUPDATE content="No hay ninguna actualización disponible." />
+		<MSGID_UPDATEAVAILABLE content="Hay una actualización disponible. ¿Quiere descargarla?" />
+		<MSGID_DOWNLOADSTOPPED content="Se interrumpió la descarga. No se podrá realizar la actualización." />
+		<MSGID_CLOSEAPP content=" está abierto.\rSe cerrará el programa para realizar la instalación.\r¿Quiere continuar?" />
+		<MSGID_ABORTORNOT content="¿Confirma que quiere interrumpir la descarga de la actualización?" />
 	</PopupMessages>
 </GUP_NativeLangue>

@@ -26,7 +26,7 @@
 		<MSGID_UPDATEAVAILABLE content="Une mise à jour est disponible, voulez-vous le télécharger?"/>
 		<MSGID_DOWNLOADTEXT content="Aller à la page de téléchargement"/>
 		<MSGID_DOWNLOADSTOPPED content="Le téléchargement est interrompu. La mise à jour ne sera pas poursuivie."/>
-		<MSGID_CLOSEAPP content=" est ouvert. Il sera fermé afin de pouvoir poursuivre l'installation. Continue?"/>
+		<MSGID_CLOSEAPP content=" est ouvert.&#xD;Il sera fermé afin de pouvoir poursuivre l'installation.&#xD;Continue?"/>
 		<MSGID_ABORTORNOT content="Etes-vous sûr d'interrompre le téléchargement?"/>
 		<MSGID_UNZIPFAILED content="Impossible de dézipper: l'opération n'est pas permise ou la décompression a échoué."/>
 	</PopupMessages>

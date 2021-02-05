@@ -28,8 +28,8 @@
 		<MSGID_UPDATEAVAILABLE content="Доступно обновление. Хотите загрузить его?" />
 		<!-- <MSGID_DOWNLOADSTOPPED  content="Download is stopped by user. Update is aborded." /> -->
 		<MSGID_DOWNLOADSTOPPED content="Загрузка остановлена пользователем. Обновление отменено." />
-		<!-- <MSGID_CLOSEAPP  content=" is opened.\rUpdater will close it in order to process the installation.\rContinue?" /> -->
-		<MSGID_CLOSEAPP content=" запущен.\rПрограмма обновления закроет его, чтобы установить обновление.\rХотите продолжить?" />
+		<!-- <MSGID_CLOSEAPP  content=" is opened.&#xD;Updater will close it in order to process the installation.&#xD;Continue?" /> -->
+		<MSGID_CLOSEAPP content=" запущен.&#xD;Программа обновления закроет его, чтобы установить обновление.&#xD;Хотите продолжить?" />
 		<!-- <MSGID_ABORTORNOT  content="Do you want to abort update download?" /> -->
 		<MSGID_ABORTORNOT content="Отменить загрузку обновления?" />
 	</PopupMessages>

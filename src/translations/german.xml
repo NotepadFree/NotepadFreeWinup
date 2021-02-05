@@ -31,8 +31,8 @@
 		<!-- <MSGID_DOWNLOADSTOPPED  content="Download is stopped by user. Update is aborded." /> -->
 		<MSGID_DOWNLOADSTOPPED  content="Das Herunterladen wurde durch den Benutzer gestoppt. Das Update wurde abgebrochen." />
 		
-		<!-- <MSGID_CLOSEAPP  content=" is opened.\rUpdater will close it in order to process the installation.\rContinue?" /> -->
-		<MSGID_CLOSEAPP  content=" wird ausgeführt.\rDer Updater wird die Anwendung beenden um die Installation vorzunehmen.\rFortfahren?" />
+		<!-- <MSGID_CLOSEAPP  content=" is opened.&#xD;Updater will close it in order to process the installation.&#xD;Continue?" /> -->
+		<MSGID_CLOSEAPP  content=" wird ausgeführt.&#xD;Der Updater wird die Anwendung beenden um die Installation vorzunehmen.&#xD;Fortfahren?" />
 
 		<!-- <MSGID_ABORTORNOT  content="Do you want to abort update download?" /> -->
 		<MSGID_ABORTORNOT  content="Möchten Sie das Herunterladen des Updates wirklich abbrechen?" />
