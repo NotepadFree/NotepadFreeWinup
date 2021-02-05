@@ -655,6 +655,7 @@ LRESULT CALLBACK updateCheckDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, L
 					if (lstrcmpW(item.szID, L"id_download") == 0)
 					{
 						::ShellExecute(NULL, TEXT("open"), TEXT("https://notepad-plus-plus.org/downloads/"), NULL, NULL, SW_SHOWNORMAL);
+						EndDialog(hWndDlg, wParam);
 					}
 					break;
 				}
