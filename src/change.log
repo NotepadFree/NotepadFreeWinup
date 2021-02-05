@@ -1,3 +1,4 @@
-WinGup (for Notepad++) v5.1.1 enhancements:
+WinGup (for Notepad++) v5.1.2 enhancements:
 
-1.  UI improvement: Plugins downloading with the progress bar
+1.  Improve info while no update available and provide download page link on the dialog.
+2.  Change from non-Unicode application to Unicode application.
