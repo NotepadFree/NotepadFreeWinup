@@ -293,6 +293,17 @@ std::string getFileContentA(const char* file2read)
 	return wholeFileContent;
 };
 
+wstring stringReplace(wstring subject, const wstring& search, const wstring& replace)
+{
+	size_t pos = 0;
+	while ((pos = subject.find(search, pos)) != std::string::npos)
+	{
+		subject.replace(pos, search.length(), replace);
+		pos += replace.length();
+	}
+	return subject;
+}
+
 // unzipDestTo should be plugin home root + plugin folder name
 // ex: %APPDATA%\..\local\Notepad++\plugins\myAwesomePlugin
 bool decompress(const wstring& zipFullFilePath, const wstring& unzipDestTo)
@@ -612,17 +623,25 @@ LRESULT CALLBACK updateCheckDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, L
 				if (!title.empty())
 					::SetWindowText(hWndDlg, title.c_str());
 
-				wstring textMsg = params->_nativeLang.getMessageString("MSGID_NOUPDATE");
-				if (!textMsg.empty())
-					::SetDlgItemText(hWndDlg, IDC_UPDATE_STATIC1, textMsg.c_str());
-
-				wstring goToDlStr = params->_nativeLang.getMessageString("MSGID_DOWNLOADTEXT");
-				if (!goToDlStr.empty())
+				wstring dlStr = params->_nativeLang.getMessageString("MSGID_DOWNLOADPAGE");
+				wstring moreInfoStr = params->_nativeLang.getMessageString("MSGID_MOREINFO");
+				if (!dlStr.empty() && !moreInfoStr.empty())
 				{
-					wstring textLink = L"<a id=\"id_download\">";
-					textLink += goToDlStr;
-					textLink += L"</a>";
-					::SetDlgItemText(hWndDlg, IDC_DOWNLOAD_LINK, textLink.c_str());
+					wstring goToDlStr = params->_nativeLang.getMessageString("MSGID_GOTODOWNLOADPAGETEXT");
+					if (!goToDlStr.empty())
+					{
+						wstring moreInfoLink = L"<a id=\"id_moreinfo\">";
+						moreInfoLink += moreInfoStr;
+						moreInfoLink += L"</a>";
+						wstring textWithLink = stringReplace(goToDlStr, L"$MSGID_MOREINFO$", moreInfoLink);
+
+						wstring dlLink = L"<a id=\"id_download\">";
+						dlLink += dlStr;
+						dlLink += L"</a>";
+						textWithLink = stringReplace(textWithLink, L"$MSGID_DOWNLOADPAGE$", dlLink);
+
+						::SetDlgItemText(hWndDlg, IDC_DOWNLOAD_LINK, textWithLink.c_str());
+					}
 				}
 			}
 			goToScreenCenter(hWndDlg);
@@ -655,6 +674,11 @@ LRESULT CALLBACK updateCheckDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, L
 					if (lstrcmpW(item.szID, L"id_download") == 0)
 					{
 						::ShellExecute(NULL, TEXT("open"), TEXT("https://notepad-plus-plus.org/downloads/"), NULL, NULL, SW_SHOWNORMAL);
+						EndDialog(hWndDlg, wParam);
+					}
+					else if (lstrcmpW(item.szID, L"id_moreinfo") == 0)
+					{
+						::ShellExecute(NULL, TEXT("open"), TEXT("https://npp-user-manual.org/docs/upgrading/#new-version-available-but-auto-updater-find-nothing"), NULL, NULL, SW_SHOWNORMAL);
 						EndDialog(hWndDlg, wParam);
 					}
 					break;

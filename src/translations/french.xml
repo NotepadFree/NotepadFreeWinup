@@ -20,11 +20,15 @@
 
 <!-- This file is optional.-->
 
-<GUP_NativeLangue name="français" version="5.1.2">
+<GUP_NativeLangue name="français" version="5.1.3">
 	<PopupMessages>
-		<MSGID_NOUPDATE content="La mise à jour n'est pas disponible.&#xD;&#xD;Elle n'est éventuellement pas encore déclenchée."/>
 		<MSGID_UPDATEAVAILABLE content="Une mise à jour est disponible, voulez-vous le télécharger?"/>
-		<MSGID_DOWNLOADTEXT content="Aller à la page de téléchargement"/>
+		
+		<MSGID_DOWNLOADPAGE content="Aller à la page de téléchargement" />
+		<MSGID_MOREINFO content="plus d'info" />
+		<!-- $MSGID_DOWNLOADPAGE$ and $MSGID_MOREINFO$ are place holders, don't translate them -->
+		<MSGID_GOTODOWNLOADPAGETEXT content="La mise à jour n'est pas disponible&#xD;ou elle n'est pas encore déclenchée&#xD;($MSGID_MOREINFO$).&#xD;&#xD;$MSGID_DOWNLOADPAGE$ pour mettre à jour Notepad++ manuellement." />
+		
 		<MSGID_DOWNLOADSTOPPED content="Le téléchargement est interrompu. La mise à jour ne sera pas poursuivie."/>
 		<MSGID_CLOSEAPP content=" est ouvert.&#xD;Il sera fermé afin de pouvoir poursuivre l'installation.&#xD;Continue?"/>
 		<MSGID_ABORTORNOT content="Etes-vous sûr d'interrompre le téléchargement?"/>

@@ -20,11 +20,15 @@
 
 <!-- This file is optional.-->
 
-<GUP_NativeLangue name="English" version="5.1.2">
+<GUP_NativeLangue name="English" version="5.1.3">
 	<PopupMessages>
-		<MSGID_NOUPDATE content="No update is available.&#xD;&#xD;The auto-update may not have been activated yet." />
 		<MSGID_UPDATEAVAILABLE content="An update package is available, do you want to download it?" />
-		<MSGID_DOWNLOADTEXT content="Go to the download page" />
+		
+		<MSGID_DOWNLOADPAGE content="Go to the download page" />
+		<MSGID_MOREINFO content="more info" />
+		<!-- $MSGID_DOWNLOADPAGE$ and $MSGID_MOREINFO$ are place holders, don't translate them -->
+		<MSGID_GOTODOWNLOADPAGETEXT content="No update is available&#xD;or the newest version is not triggered yet for updating ($MSGID_MOREINFO$)&#xD;&#xD;$MSGID_DOWNLOADPAGE$ to update Notepad++ manually." />
+		
 		<MSGID_DOWNLOADSTOPPED content="Download is stopped by user. Update is aborted." />
 		<MSGID_CLOSEAPP content=" is opened.&#xD;Updater will close it in order to process the installation.&#xD;Continue?" />
 		<MSGID_ABORTORNOT content="Do you want to abort update download?" />
