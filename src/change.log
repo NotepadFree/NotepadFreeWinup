@@ -1,4 +1,3 @@
-WinGup (for Notepad++) v5.1.2 enhancements:
+WinGup (for Notepad++) v5.1.3 enhancements:
 
-1.  Improve info while no update available and provide download page link on the dialog.
-2.  Change from non-Unicode application to Unicode application.
+1.  Improve "No Notepad++ update" dialog message.
