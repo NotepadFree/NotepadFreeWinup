@@ -774,7 +774,7 @@ bool downloadBinary(const wstring& urlFrom, const wstring& destTo, const wstring
 			}
 			wstring sha2HashToCheckLowerCase = sha2HashToCheck;
 			std::transform(sha2HashToCheckLowerCase.begin(), sha2HashToCheckLowerCase.end(), sha2HashToCheckLowerCase.begin(),
-				[](char c) { return static_cast<char>(::tolower(c)); });
+				[](wchar_t c) { return static_cast<wchar_t>(::tolower(c)); });
 
 			wstring sha2hashStrW = s2ws(sha2hashStr);
 			if (sha2HashToCheckLowerCase != sha2hashStrW)
