@@ -277,7 +277,7 @@ copy ..\src\ConfigFiles\gup.xml ..\bin\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin\getDownLoadUrl.php
 copy ..\LICENSE ..\bin\LICENSE
 copy ..\README.md ..\bin\README.md
-copy ..\curl\builds\libcurl-vc14-x86-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin\libcurl.dll
+copy ..\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin\libcurl.dll
 xcopy ..\src\translations ..\bin\translations\ /S /Y /E
 del ..\bin\GUP.iobj
 del ..\bin\GUP.ipdb</Command>
@@ -317,7 +317,7 @@ copy ..\src\ConfigFiles\gup.xml ..\bin64\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin64\getDownLoadUrl.php
 copy ..\LICENSE ..\bin64\LICENSE
 copy ..\README.md ..\bin64\README.md
-copy ..\curl\builds\libcurl-vc14-x64-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin64\libcurl.dll
+copy ..\curl\builds\libcurl-vc15-x64-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin64\libcurl.dll
 xcopy ..\src\translations ..\bin64\translations\  /S /Y /E
 del ..\bin64\GUP.iobj
 del ..\bin64\GUP.ipdb</Command>
@@ -392,15 +392,13 @@ del ..\bin64\GUP.ipdb</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\src\change.log ..\bin64\change.log
-copy ..\src\ConfigFiles\gup.xml ..\bin64\gup.xml
-copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin64\getDownLoadUrl.php
-copy ..\LICENSE ..\bin64\LICENSE
-copy ..\README.md ..\bin64\README.md
-copy ..\curl\builds\libcurl-vc14-x64-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin64\libcurl.dll
-xcopy ..\src\translations ..\bin64\translations\  /S /Y /E
-del ..\bin64\GUP.iobj
-del ..\bin64\GUP.ipdb</Command>
+      <Command>copy ..\src\change.log ..\binarm64\change.log
+copy ..\src\ConfigFiles\gup.xml ..\binarm64\gup.xml
+copy ..\src\ConfigFiles\getDownLoadUrl.php ..\binarm64\getDownLoadUrl.php
+copy ..\LICENSE ..\binarm64\LICENSE
+copy ..\README.md ..\binarm64\README.md
+copy ..\curl\builds\libcurl-vc15-ARM64-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\binarm64\libcurl.dll
+xcopy ..\src\translations ..\binarm64\translations\  /S /Y /E</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>
