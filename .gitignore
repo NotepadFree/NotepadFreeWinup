@@ -55,6 +55,7 @@ UpgradeLog*.htm
 *.bak
 bin/
 bin64/
+binarm64/
 curl/build
 curl/builds
 
