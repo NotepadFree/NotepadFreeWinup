@@ -103,7 +103,7 @@ public:
 		_xmlDoc.LoadFile(xmlFileName);
 		_nativeLangRoot = _xmlDoc.FirstChild("GUP_NativeLangue");
 	};
-	std::wstring getMessageString(std::string msgID);
+	std::wstring getMessageString(const std::string& msgID) const;
 
 protected:
 	TiXmlNode *_nativeLangRoot;

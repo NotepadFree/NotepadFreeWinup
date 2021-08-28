@@ -61,6 +61,7 @@ const wchar_t MSGID_DOWNLOADSTOPPED[] = L"Download is stopped by user. Update is
 const wchar_t MSGID_CLOSEAPP[] = L" is opened.\rUpdater will close it in order to process the installation.\rContinue?";
 const wchar_t MSGID_ABORTORNOT[] = L"Do you want to abort update download?";
 const wchar_t MSGID_UNZIPFAILED[] = L"Can't unzip:\nOperation not permitted or decompression failed";
+const wchar_t MSGID_NODOWNLOADFOLDER[] = L"Can't find a download folder";
 const wchar_t MSGID_HELP[] = L"Usage :\r\
 \r\
 gup --help\r\
@@ -917,6 +918,34 @@ bool runInstaller(const wstring& app2runPath, const wstring& binWindowsClassName
 	return true;
 }
 
+// Returns a folder suitable for exe installer download destination.
+// In case of error, shows a message box and returns an empty string.
+std::wstring getDestDir(const GupNativeLang& nativeLang, const GupParameters& gupParams)
+{
+	// Note: Other fallback directories may be Downloads, %UserProfile%, etc.
+	const wchar_t* envVar = _wgetenv(L"TEMP");
+	if (envVar)
+		return envVar;
+	envVar = _wgetenv(L"TMP");
+	if (envVar)
+		return envVar;
+
+	envVar = _wgetenv(L"AppData");
+	if (envVar)
+	{
+		std::wstring result = envVar;
+		result += L"\\Notepad++";
+		if (::PathFileExists(result.c_str()))
+			return result;
+	}
+
+	std::wstring message = nativeLang.getMessageString("MSGID_NODOWNLOADFOLDER");
+	if (message.empty())
+		message = MSGID_NODOWNLOADFOLDER;
+	::MessageBox(NULL, message.c_str(), gupParams.getMessageBoxTitle().c_str(), MB_ICONERROR | MB_OK);
+	return {};
+}
+
 
 #ifdef _DEBUG
 #define WRITE_LOG(fn, suffix, log) writeLog(fn, suffix, log);
@@ -1071,7 +1100,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 				}
 
 				// install
-				std::wstring dlDest = _wgetenv(L"TEMP");
+				std::wstring dlDest = getDestDir(nativeLang, gupParams);
+				if (dlDest.empty())
+					return -1;
 				dlDest += L"\\";
 				dlDest += ::PathFindFileName(dlUrl.c_str());
 
@@ -1235,7 +1266,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 		// Download executable bin
 		//
 
-		std::wstring dlDest = _wgetenv(L"TEMP");
+		std::wstring dlDest = getDestDir(nativeLang, gupParams);
+		if (dlDest.empty())
+			return -1;
 		dlDest += L"\\";
 		dlDest += ::PathFindFileName(gupDlInfo.getDownloadLocation().c_str());
 

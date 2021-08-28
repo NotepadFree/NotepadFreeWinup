@@ -306,7 +306,7 @@ void GupExtraOptions::writeProxyInfo(const wchar_t* fn, const wchar_t* proxySrv,
 	newProxySettings.SaveFile();
 }
 
-std::wstring GupNativeLang::getMessageString(std::string msgID)
+std::wstring GupNativeLang::getMessageString(const std::string& msgID) const
 {
 	if (!_nativeLangRoot)
 		return L"";
