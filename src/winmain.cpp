@@ -26,6 +26,7 @@
 #include <fstream>
 #include <string>
 #include <commctrl.h>
+#include <shlobj_core.h>
 #include "resource.h"
 #include <shlwapi.h>
 #include "xmlTools.h"
@@ -61,7 +62,7 @@ const wchar_t MSGID_DOWNLOADSTOPPED[] = L"Download is stopped by user. Update is
 const wchar_t MSGID_CLOSEAPP[] = L" is opened.\rUpdater will close it in order to process the installation.\rContinue?";
 const wchar_t MSGID_ABORTORNOT[] = L"Do you want to abort update download?";
 const wchar_t MSGID_UNZIPFAILED[] = L"Can't unzip:\nOperation not permitted or decompression failed";
-const wchar_t MSGID_NODOWNLOADFOLDER[] = L"Can't find a download folder";
+const wchar_t MSGID_NODOWNLOADFOLDER[] = L"Can't find any folder for downloading.\rPlease check your environment variables\"%TMP%\", \"%TEMP%\" and \"%APPDATA%\"";
 const wchar_t MSGID_HELP[] = L"Usage :\r\
 \r\
 gup --help\r\
@@ -918,6 +919,20 @@ bool runInstaller(const wstring& app2runPath, const wstring& binWindowsClassName
 	return true;
 }
 
+
+std::wstring getSpecialFolderLocation(int folderKind)
+{
+	TCHAR path[MAX_PATH];
+	const HRESULT specialLocationResult = SHGetFolderPath(nullptr, folderKind, nullptr, SHGFP_TYPE_CURRENT, path);
+
+	wstring result;
+	if (SUCCEEDED(specialLocationResult))
+	{
+		result = path;
+	}
+	return result;
+}
+
 // Returns a folder suitable for exe installer download destination.
 // In case of error, shows a message box and returns an empty string.
 std::wstring getDestDir(const GupNativeLang& nativeLang, const GupParameters& gupParams)
@@ -931,13 +946,22 @@ std::wstring getDestDir(const GupNativeLang& nativeLang, const GupParameters& gu
 		return envVar;
 
 	envVar = _wgetenv(L"AppData");
+	std::wstring downloadFolder;
 	if (envVar)
 	{
-		std::wstring result = envVar;
-		result += L"\\Notepad++";
-		if (::PathFileExists(result.c_str()))
-			return result;
+		downloadFolder = envVar;
 	}
+	else
+	{
+		downloadFolder = getSpecialFolderLocation(CSIDL_APPDATA);
+	}
+	downloadFolder += L"\\Notepad++";
+	if (::PathFileExists(downloadFolder.c_str()))
+		return downloadFolder;
+
+	downloadFolder = getSpecialFolderLocation(CSIDL_INTERNET_CACHE);
+	if (!downloadFolder.empty())
+		return downloadFolder;
 
 	std::wstring message = nativeLang.getMessageString("MSGID_NODOWNLOADFOLDER");
 	if (message.empty())
