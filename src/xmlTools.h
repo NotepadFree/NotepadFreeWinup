@@ -40,6 +40,7 @@ public:
 	const std::wstring & getClassName() const {return _className2Close;};
 	const std::wstring & getMessageBoxTitle() const {return _messageBoxTitle;};
 	const std::wstring & getSoftwareName() const {return _softwareName;};
+	const std::wstring & getSoftwareIcon() const { return _softwareIcon; };
 	int get3rdButtonCmd() const {return _3rdButton_wm_cmd;};
 	int get3rdButtonWparam() const {return _3rdButton_wParam;};
 	int get3rdButtonLparam() const {return _3rdButton_lParam;};
@@ -61,6 +62,7 @@ private:
 	std::wstring _className2Close;
 	std::wstring _messageBoxTitle;
 	std::wstring _softwareName;
+	std::wstring _softwareIcon;
 	bool _isMessageBoxModal = false;
 	int _3rdButton_wm_cmd = 0;
 	int _3rdButton_wParam = 0;

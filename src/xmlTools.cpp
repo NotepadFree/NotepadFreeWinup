@@ -190,6 +190,18 @@ GupParameters::GupParameters(const wchar_t * xmlFileName)
 				_softwareName = s2ws(uaVal);
 		}
 	}
+
+	TiXmlNode *softwareIconNode = root->FirstChildElement("SoftwareIcon");
+	if (softwareIconNode)
+	{
+		TiXmlNode *un = softwareIconNode->FirstChild();
+		if (un)
+		{
+			const char *uaVal = un->Value();
+			if (uaVal)
+				_softwareIcon = s2ws(uaVal);
+		}
+	}
 }
 
 GupDownloadInfo::GupDownloadInfo(const char* xmlString)

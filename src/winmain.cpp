@@ -40,6 +40,7 @@ using namespace std;
 typedef vector<wstring> ParamVector;
 
 HINSTANCE hInst;
+HHOOK g_hMsgBoxHook;
 static HWND hProgressDlg;
 static HWND hProgressBar;
 static bool doAbort = false;
@@ -50,6 +51,7 @@ static wstring proxySrv = L"0.0.0.0";
 static long proxyPort  = 0;
 static wstring winGupUserAgent = L"WinGup/";
 static wstring dlFileName = L"";
+static wstring appIconFile = L"";
 
 const wchar_t FLAG_OPTIONS[] = L"-options";
 const wchar_t FLAG_VERBOSE[] = L"-verbose";
@@ -87,6 +89,52 @@ gup -unzipTo [-clean] FOLDER_TO_ACTION ZIP_URL\r\
     FOLDER_TO_ACTION: The folder where we clean or/and unzip to.\r\
 	";
 std::wstring thirdDoUpdateDlgButtonLabel;
+
+class DlgIconHelper
+{
+public:
+	DlgIconHelper()
+	{
+		g_hMsgBoxHook = SetWindowsHookEx(WH_CALLWNDPROC, CallWndProc, NULL, GetCurrentThreadId());
+	}
+
+	~DlgIconHelper()
+	{
+		UnhookWindowsHookEx(g_hMsgBoxHook);
+	}
+
+	static LRESULT CALLBACK CallWndProc(int nCode, WPARAM wParam, LPARAM lParam)
+	{
+		if (nCode == HC_ACTION)
+		{
+			CWPSTRUCT* pcwp = (CWPSTRUCT*)lParam;
+
+			if (pcwp->message == WM_INITDIALOG)
+			{
+				setIcon(pcwp->hwnd, appIconFile);
+			}
+		}
+
+		return CallNextHookEx(g_hMsgBoxHook, nCode, wParam, lParam);
+	}
+
+	static void setIcon(HWND hwnd, const wstring& iconFile)
+	{
+		if (!iconFile.empty())
+		{
+			HICON hIcon = nullptr, hIconSm = nullptr;
+
+			hIcon = reinterpret_cast<HICON>(LoadImage(NULL, iconFile.c_str(), IMAGE_ICON, 32, 32, LR_LOADFROMFILE));
+			hIconSm = reinterpret_cast<HICON>(LoadImage(NULL, iconFile.c_str(), IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
+			if (hIcon && hIconSm)
+			{
+				SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+				SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIconSm);
+			}
+		}
+	}
+};
+DlgIconHelper dlgIconHelper;
 
 void writeLog(const wchar_t *logFileName, const wchar_t *logSuffix, const wchar_t *log2write)
 {
@@ -511,6 +559,7 @@ LRESULT CALLBACK progressBarDlgProc(HWND hWndDlg, UINT Msg, WPARAM wParam, LPARA
 										  hWndDlg, NULL, hInst, NULL);
 			SendMessage(hProgressBar, PBM_SETRANGE, 0, MAKELPARAM(0, 100)); 
 			SendMessage(hProgressBar, PBM_SETSTEP, 1, 0);
+			DlgIconHelper::setIcon(hProgressDlg, appIconFile);
 			goToScreenCenter(hWndDlg);
 			return TRUE; 
 
@@ -1014,6 +1063,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 	getParamVal('v', params, version);
 	getParamVal('p', params, customParam);
 
+	// Object (gupParams) is moved here because we need app icon form configuration file
+	GupParameters gupParams(L"gup.xml");
+	appIconFile = gupParams.getSoftwareIcon();
+
 	if (isHelp)
 	{
 		::MessageBox(NULL, MSGID_HELP, L"GUP Command Argument Help", MB_OK);
@@ -1024,7 +1077,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 	
 	GupExtraOptions extraOptions(L"gupOptions.xml");
 	GupNativeLang nativeLang("nativeLang.xml");
-	GupParameters gupParams(L"gup.xml");
 
 	//
 	// Plugins Updater
