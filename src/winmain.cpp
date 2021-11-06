@@ -479,10 +479,13 @@ static size_t setProgress(HWND, double dlTotal, double dlSoFar, double, double)
 
 	size_t downloadedRatio = SendMessage(hProgressBar, PBM_DELTAPOS, 0, 0);
 
-	size_t step = size_t(dlSoFar * 100.0 / dlTotal - downloadedRatio);
+	if (dlTotal != 0)
+	{
+		size_t step = size_t(dlSoFar * 100.0 / dlTotal - downloadedRatio);
 
-	SendMessage(hProgressBar, PBM_SETSTEP, (WPARAM)step, 0);
-	SendMessage(hProgressBar, PBM_STEPIT, 0, 0);
+		SendMessage(hProgressBar, PBM_SETSTEP, (WPARAM)step, 0);
+		SendMessage(hProgressBar, PBM_STEPIT, 0, 0);
+	}
 
 	const size_t percentageLen = 1024;
 	wchar_t percentage[percentageLen];
