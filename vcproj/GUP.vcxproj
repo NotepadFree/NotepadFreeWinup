@@ -277,6 +277,7 @@ copy ..\src\ConfigFiles\gup.xml ..\bin\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin\getDownLoadUrl.php
 copy ..\LICENSE ..\bin\LICENSE
 copy ..\README.md ..\bin\README.md
+copy ..\resources\updater.ico ..\bin\updater.ico
 copy ..\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin\libcurl.dll
 xcopy ..\src\translations ..\bin\translations\ /S /Y /E
 del ..\bin\GUP.iobj
@@ -313,6 +314,7 @@ del ..\bin\GUP.ipdb</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy ..\src\change.log ..\bin64\change.log
+copy ..\resources\updater.ico ..\bin64\updater.ico
 copy ..\src\ConfigFiles\gup.xml ..\bin64\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin64\getDownLoadUrl.php
 copy ..\LICENSE ..\bin64\LICENSE
@@ -393,6 +395,7 @@ del ..\bin64\GUP.ipdb</Command>
     </Link>
     <PostBuildEvent>
       <Command>copy ..\src\change.log ..\binarm64\change.log
+copy ..\resources\updater.ico ..\binarm64\updater.ico
 copy ..\src\ConfigFiles\gup.xml ..\binarm64\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\binarm64\getDownLoadUrl.php
 copy ..\LICENSE ..\binarm64\LICENSE
