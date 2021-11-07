@@ -64,7 +64,7 @@ How to build it?
 
  * Step 1: You have to build cURL before building WinGup:
 
-    1. Open VS2017 Native Tool Command for 32/64 bits. If you want to build for ARM, oprn a cmd, and run the following command:<br/>
+    1. Open VS2017 Native Tool Command for 32/64 bits. If you want to build for ARM, open a cmd, and run the following command:<br/>
     `C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsamd64_arm64.bat`
     2. go to curl winbuild directory:<br/>
        `cd <your wingup source path>\curl\winbuild`

@@ -120,7 +120,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\libcurl\include;..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;TIXML_USE_STL;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -133,7 +133,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_debug.lib;ZipLib.lib;zlib.lib;lzma.lib;bzip2.lib;comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x86-debug-dll-ipv6-sspi-winssl\lib;Bin\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x86-debug-dll-ipv6-sspi-schannel\lib;Bin\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -146,7 +146,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\libcurl\include;..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;TIXML_USE_STL;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -158,7 +158,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_debug.lib;ZipLib.lib;zlib.lib;lzma.lib;bzip2.lib;comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x64-debug-dll-ipv6-sspi-winssl\lib;Bin\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x64-debug-dll-ipv6-sspi-schannel\lib;Bin\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -170,7 +170,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\src\libcurl\include;..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;TIXML_USE_STL;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -182,7 +182,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl_debug.lib;ZipLib.lib;zlib.lib;lzma.lib;bzip2.lib;comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc14-x64-debug-dll-ipv6-sspi-winssl\lib;Bin\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc14-x64-debug-dll-ipv6-sspi-schannel\lib;Bin\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -197,7 +197,7 @@
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\src\libcurl\include;..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;TIXML_USE_STL;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -209,7 +209,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl.lib;ZipLib.lib;zlib.lib;lzma.lib;bzip2.lib;comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\lib;Bin\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-schannel\lib;Bin\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -223,7 +223,7 @@ copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin\getDownLoadUrl.php
 copy ..\LICENSE ..\bin\LICENSE
 copy ..\README.md ..\bin\README.md
 copy ..\resources\updater.ico ..\bin\updater.ico
-copy ..\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin\libcurl.dll
+copy ..\curl\builds\libcurl-vc15-x86-release-dll-ipv6-sspi-schannel\bin\libcurl.dll ..\bin\libcurl.dll
 xcopy ..\src\translations ..\bin\translations\ /S /Y /E
 del ..\bin\GUP.iobj
 del ..\bin\GUP.ipdb</Command>
@@ -239,7 +239,7 @@ del ..\bin\GUP.ipdb</Command>
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\src\libcurl\include;..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;TIXML_USE_STL;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -251,7 +251,7 @@ del ..\bin\GUP.ipdb</Command>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl.lib;ZipLib.lib;zlib.lib;lzma.lib;bzip2.lib;comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x64-release-dll-ipv6-sspi-winssl\lib;Bin\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-x64-release-dll-ipv6-sspi-schannel\lib;Bin\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -264,7 +264,7 @@ copy ..\src\ConfigFiles\gup.xml ..\bin64\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\bin64\getDownLoadUrl.php
 copy ..\LICENSE ..\bin64\LICENSE
 copy ..\README.md ..\bin64\README.md
-copy ..\curl\builds\libcurl-vc15-x64-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\bin64\libcurl.dll
+copy ..\curl\builds\libcurl-vc15-x64-release-dll-ipv6-sspi-schannel\bin\libcurl.dll ..\bin64\libcurl.dll
 xcopy ..\src\translations ..\bin64\translations\  /S /Y /E
 del ..\bin64\GUP.iobj
 del ..\bin64\GUP.ipdb</Command>
@@ -280,7 +280,7 @@ del ..\bin64\GUP.ipdb</Command>
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\src\libcurl\include;..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src\TinyXml;..\src\sha2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;TIXML_USE_STL;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -292,7 +292,7 @@ del ..\bin64\GUP.ipdb</Command>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl.lib;ZipLib.lib;zlib.lib;lzma.lib;bzip2.lib;comctl32.lib;shlwapi.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-ARM64-release-dll-ipv6-sspi-winssl\lib;Bin\arm64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\curl\builds\libcurl-vc15-ARM64-release-dll-ipv6-sspi-schannel\lib;Bin\arm64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -305,7 +305,7 @@ copy ..\src\ConfigFiles\gup.xml ..\binarm64\gup.xml
 copy ..\src\ConfigFiles\getDownLoadUrl.php ..\binarm64\getDownLoadUrl.php
 copy ..\LICENSE ..\binarm64\LICENSE
 copy ..\README.md ..\binarm64\README.md
-copy ..\curl\builds\libcurl-vc15-ARM64-release-dll-ipv6-sspi-winssl\bin\libcurl.dll ..\binarm64\libcurl.dll
+copy ..\curl\builds\libcurl-vc15-ARM64-release-dll-ipv6-sspi-schannel\bin\libcurl.dll ..\binarm64\libcurl.dll
 xcopy ..\src\translations ..\binarm64\translations\  /S /Y /E</Command>
     </PostBuildEvent>
     <PreLinkEvent>
