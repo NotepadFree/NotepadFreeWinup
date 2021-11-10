@@ -1,3 +1,4 @@
-WinGup (for Notepad++) v5.2.1 bug-fix:
+WinGup (for Notepad++) v5.2.2 new feature & change:
 
-1.  Fix GUP crashes when %TEMP% is not set.
+1.  Update cURL from v7.56.1 to v7.79.1.
+2.  Add updater icon for dialogs & on taskbar.

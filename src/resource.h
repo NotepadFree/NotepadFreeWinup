@@ -17,11 +17,10 @@
  along with GUP.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#pragma once
 
-#define VERSION_VALUE L"5.21\0"
-#define VERSION_DIGITALVALUE 5, 2, 1, 0
+#define VERSION_VALUE L"5.22\0"
+#define VERSION_DIGITALVALUE 5, 2, 2, 0
 
 #define IDD_PROGRESS_DLG 1001
 #define IDD_PROXY_DLG 1002
@@ -34,4 +33,3 @@
 #define IDD_UPDATE_DLG 1009
 #define IDC_DOWNLOAD_LINK 1011
 
-#endif // RESOURCE_H
