@@ -60,6 +60,8 @@ const wchar_t FLAG_UUZIP[] = L"-unzipTo";
 const wchar_t FLAG_CLEANUP[] = L"-clean";
 
 const wchar_t MSGID_UPDATEAVAILABLE[] = L"An update package is available, do you want to download it?";
+const wchar_t MSGID_VERSIONCURRENT[] = L"Current version is   :";
+const wchar_t MSGID_VERSIONNEW[] = L"Available version is :";
 const wchar_t MSGID_DOWNLOADSTOPPED[] = L"Download is stopped by user. Update is aborted.";
 const wchar_t MSGID_CLOSEAPP[] = L" is opened.\rUpdater will close it in order to process the installation.\rContinue?";
 const wchar_t MSGID_ABORTORNOT[] = L"Do you want to abort update download?";
@@ -1022,6 +1024,45 @@ std::wstring getDestDir(const GupNativeLang& nativeLang, const GupParameters& gu
 	return {};
 }
 
+std::wstring productVersionToFileVersion(const std::wstring& productVersion)
+{
+	auto pos = productVersion.find(L'.');
+	if (pos == std::wstring::npos)
+	{
+		return productVersion + L".0.0.0";
+	}
+
+	// Assuming versions (minor, build, revision) will always be single digit for notepad++
+	std::wstring minor = L"0";
+	std::wstring build = L"0";
+	std::wstring revision = L"0";
+
+	std::wstring remaining = productVersion.substr(pos + 1);
+	auto len = remaining.length();
+	switch (len)
+	{
+	case 3:
+		minor = remaining.at(0);
+		build = remaining.at(1);
+		revision = remaining.at(2);
+		break;
+	case 2:
+		minor = remaining.at(0);
+		build = remaining.at(1);
+		break;
+	case 1:
+		minor = remaining.at(0);
+		break;
+	default:
+		break;
+	}
+
+	std::wstring fileVersion = productVersion.substr(0, pos + 1);
+	fileVersion += minor + L"." + build + L"." + revision;
+
+	return fileVersion;
+}
+
 
 #ifdef _DEBUG
 #define WRITE_LOG(fn, suffix, log) writeLog(fn, suffix, log);
@@ -1311,8 +1352,21 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 
 		// Ask user if he/she want to do update
 		wstring updateAvailable = nativeLang.getMessageString("MSGID_UPDATEAVAILABLE");
-		if (updateAvailable == L"")
+		if (updateAvailable.empty())
 			updateAvailable = MSGID_UPDATEAVAILABLE;
+
+		wstring versionCurrent = nativeLang.getMessageString("MSGID_VERSIONCURRENT");
+		if (versionCurrent.empty())
+			versionCurrent = MSGID_VERSIONCURRENT;
+		versionCurrent += L" " + productVersionToFileVersion(version);
+
+		wstring versionNew = nativeLang.getMessageString("MSGID_VERSIONNEW");
+		if (versionNew.empty())
+			versionNew = MSGID_VERSIONNEW;
+		versionNew += L" " + gupDlInfo.getVersion();
+
+		updateAvailable += L"\n\n" + versionCurrent;
+		updateAvailable += L"\n" + versionNew;
 		
 		int thirdButtonCmd = gupParams.get3rdButtonCmd();
 		thirdDoUpdateDlgButtonLabel = gupParams.get3rdButtonLabel();
