@@ -591,7 +591,7 @@ LRESULT CALLBACK progressBarDlgProc(HWND hWndDlg, UINT Msg, WPARAM wParam, LPARA
 }
 
 
-LRESULT CALLBACK yesNoNeverDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, LPARAM)
+LRESULT CALLBACK yesNoNeverDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -599,6 +599,11 @@ LRESULT CALLBACK yesNoNeverDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, LP
 		{
 			if (thirdDoUpdateDlgButtonLabel != L"")
 				::SetDlgItemText(hWndDlg, IDCANCEL, thirdDoUpdateDlgButtonLabel.c_str());
+
+			if (lParam)
+			{
+				::SetDlgItemText(hWndDlg, IDC_YESNONEVERMSG, (LPCWSTR)lParam);
+			}
 
 			goToScreenCenter(hWndDlg);
 			return TRUE;
@@ -1063,12 +1068,15 @@ std::wstring productVersionToFileVersion(const std::wstring& productVersion)
 	return fileVersion;
 }
 
-
 #ifdef _DEBUG
 #define WRITE_LOG(fn, suffix, log) writeLog(fn, suffix, log);
 #else
 #define WRITE_LOG(fn, suffix, log)
 #endif
+
+// Definition from Notepad++
+#define NPPMSG  (WM_USER + 1000)
+#define NPPM_DISABLEAUTOUPDATE (NPPMSG + 95) // 2119 in decimal
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 {
@@ -1368,15 +1376,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 		updateAvailable += L"\n\n" + versionCurrent;
 		updateAvailable += L"\n" + versionNew;
 		
-		int thirdButtonCmd = gupParams.get3rdButtonCmd();
 		thirdDoUpdateDlgButtonLabel = gupParams.get3rdButtonLabel();
 
 		int dlAnswer = 0;
-
-		if (!thirdButtonCmd)
-			dlAnswer = ::MessageBox(isModal ? hApp : NULL, updateAvailable.c_str(), gupParams.getMessageBoxTitle().c_str(), MB_YESNO);
-		else
-			dlAnswer = static_cast<int32_t>(::DialogBox(hInst, MAKEINTRESOURCE(IDD_YESNONEVERDLG), isModal ? hApp : NULL, reinterpret_cast<DLGPROC>(yesNoNeverDlgProc)));
+		dlAnswer = static_cast<int32_t>(::DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_YESNONEVERDLG), hApp, reinterpret_cast<DLGPROC>(yesNoNeverDlgProc), (LPARAM)updateAvailable.c_str()));
 
 		if (dlAnswer == IDNO)
 		{
@@ -1385,12 +1388,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR lpszCmdLine, int)
 		
 		if (dlAnswer == IDCANCEL)
 		{
-			if (gupParams.getClassName() != L"")
+			if (hApp)
 			{
-				if (hApp)
-				{
-					::SendMessage(hApp, thirdButtonCmd, gupParams.get3rdButtonWparam(), gupParams.get3rdButtonLparam());
-				}
+				::SendMessage(hApp, NPPM_DISABLEAUTOUPDATE, 0, 0);
 			}
 			return 0;
 		}
