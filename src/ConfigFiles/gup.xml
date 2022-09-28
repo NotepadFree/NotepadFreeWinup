@@ -37,7 +37,7 @@
 	With the current version value, your web application should return a set of information in xml form to tell WinGup update version and the location of update package to download.
 	-->
 	<!--InfoUrl>http://notepad-plus.sourceforge.net/commun/update/getDownLoadUrl.php</InfoUrl-->
-	<InfoUrl>https://notepafree.song-zh.com/update/getDownloadUrl.php</InfoUrl>
+	<InfoUrl>https://notepadfree.song-zh.com/update/getDownloadUrl</InfoUrl>
 
 	<!-- Optional. 
 	The SoftwareName(plus its version) will be part of the User-Agent you want to use to download your binary:
