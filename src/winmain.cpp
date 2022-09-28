@@ -734,7 +734,7 @@ LRESULT CALLBACK updateCheckDlgProc(HWND hWndDlg, UINT message, WPARAM wParam, L
 					LITEM item = pNMLink->item;
 					if (lstrcmpW(item.szID, L"id_download") == 0)
 					{
-						::ShellExecute(NULL, TEXT("open"), TEXT("https://notepad-plus-plus.org/downloads/"), NULL, NULL, SW_SHOWNORMAL);
+						::ShellExecute(NULL, TEXT("open"), TEXT("https://github.com/NotepadFree/NotepadFree/releases"), NULL, NULL, SW_SHOWNORMAL);
 						EndDialog(hWndDlg, wParam);
 					}
 					else if (lstrcmpW(item.szID, L"id_moreinfo") == 0)
@@ -1014,7 +1014,7 @@ std::wstring getDestDir(const GupNativeLang& nativeLang, const GupParameters& gu
 	{
 		downloadFolder = getSpecialFolderLocation(CSIDL_APPDATA);
 	}
-	downloadFolder += L"\\Notepad++";
+	downloadFolder += L"\\NotepadFree";
 	if (::PathFileExists(downloadFolder.c_str()))
 		return downloadFolder;
 
